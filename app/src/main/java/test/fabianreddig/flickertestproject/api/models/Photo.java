@@ -4,6 +4,9 @@ package test.fabianreddig.flickertestproject.api.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import javax.annotation.Generated;
+
+@Generated("org.jsonschema2pojo")
 public class Photo {
 
     @SerializedName("id")
@@ -33,24 +36,63 @@ public class Photo {
     @SerializedName("isfamily")
     @Expose
     private int isfamily;
+    @SerializedName("originalsecret")
+    @Expose
+    private String originalsecret;
+    @SerializedName("originalformat")
+    @Expose
+    private String originalformat;
+    @SerializedName("url_q")
+    @Expose
+    private String urlQ;
+    @SerializedName("height_q")
+    @Expose
+    private String heightQ;
+    @SerializedName("width_q")
+    @Expose
+    private String widthQ;
     @SerializedName("url_n")
     @Expose
     private String urlN;
     @SerializedName("height_n")
     @Expose
-    private String heightN;
+    private int heightN;
     @SerializedName("width_n")
     @Expose
     private String widthN;
+    @SerializedName("url_c")
+    @Expose
+    private String urlC;
+    @SerializedName("height_c")
+    @Expose
+    private int heightC;
+    @SerializedName("width_c")
+    @Expose
+    private String widthC;
     @SerializedName("url_h")
     @Expose
     private String urlH;
     @SerializedName("height_h")
     @Expose
-    private String heightH;
+    private int heightH;
     @SerializedName("width_h")
     @Expose
     private String widthH;
+    @SerializedName("url_o")
+    @Expose
+    private String urlO;
+    @SerializedName("height_o")
+    @Expose
+    private String heightO;
+    @SerializedName("width_o")
+    @Expose
+    private String widthO;
+    @SerializedName("o_width")
+    @Expose
+    private String oWidth;
+    @SerializedName("o_height")
+    @Expose
+    private String oHeight;
 
     /**
      * 
@@ -217,6 +259,96 @@ public class Photo {
     /**
      * 
      * @return
+     *     The originalsecret
+     */
+    public String getOriginalsecret() {
+        return originalsecret;
+    }
+
+    /**
+     * 
+     * @param originalsecret
+     *     The originalsecret
+     */
+    public void setOriginalsecret(String originalsecret) {
+        this.originalsecret = originalsecret;
+    }
+
+    /**
+     * 
+     * @return
+     *     The originalformat
+     */
+    public String getOriginalformat() {
+        return originalformat;
+    }
+
+    /**
+     * 
+     * @param originalformat
+     *     The originalformat
+     */
+    public void setOriginalformat(String originalformat) {
+        this.originalformat = originalformat;
+    }
+
+    /**
+     * 
+     * @return
+     *     The urlQ
+     */
+    public String getUrlQ() {
+        return urlQ;
+    }
+
+    /**
+     * 
+     * @param urlQ
+     *     The url_q
+     */
+    public void setUrlQ(String urlQ) {
+        this.urlQ = urlQ;
+    }
+
+    /**
+     * 
+     * @return
+     *     The heightQ
+     */
+    public String getHeightQ() {
+        return heightQ;
+    }
+
+    /**
+     * 
+     * @param heightQ
+     *     The height_q
+     */
+    public void setHeightQ(String heightQ) {
+        this.heightQ = heightQ;
+    }
+
+    /**
+     * 
+     * @return
+     *     The widthQ
+     */
+    public String getWidthQ() {
+        return widthQ;
+    }
+
+    /**
+     * 
+     * @param widthQ
+     *     The width_q
+     */
+    public void setWidthQ(String widthQ) {
+        this.widthQ = widthQ;
+    }
+
+    /**
+     * 
+     * @return
      *     The urlN
      */
     public String getUrlN() {
@@ -237,7 +369,7 @@ public class Photo {
      * @return
      *     The heightN
      */
-    public String getHeightN() {
+    public int getHeightN() {
         return heightN;
     }
 
@@ -246,7 +378,7 @@ public class Photo {
      * @param heightN
      *     The height_n
      */
-    public void setHeightN(String heightN) {
+    public void setHeightN(int heightN) {
         this.heightN = heightN;
     }
 
@@ -266,6 +398,60 @@ public class Photo {
      */
     public void setWidthN(String widthN) {
         this.widthN = widthN;
+    }
+
+    /**
+     *
+     * @return
+     *     The urlC
+     */
+    public String getUrlC() {
+        return urlC;
+    }
+
+    /**
+     *
+     * @param urlC
+     *     The url_c
+     */
+    public void setUrlC(String urlC) {
+        this.urlC = urlC;
+    }
+
+    /**
+     *
+     * @return
+     *     The heightC
+     */
+    public int getHeightC() {
+        return heightC;
+    }
+
+    /**
+     *
+     * @param heightC
+     *     The height_c
+     */
+    public void setHeightC(int heightC) {
+        this.heightC = heightC;
+    }
+
+    /**
+     *
+     * @return
+     *     The widthC
+     */
+    public String getWidthC() {
+        return widthC;
+    }
+
+    /**
+     *
+     * @param widthC
+     *     The width_c
+     */
+    public void setWidthC(String widthC) {
+        this.widthC = widthC;
     }
 
     /**
@@ -291,7 +477,7 @@ public class Photo {
      * @return
      *     The heightH
      */
-    public String getHeightH() {
+    public int getHeightH() {
         return heightH;
     }
 
@@ -300,7 +486,7 @@ public class Photo {
      * @param heightH
      *     The height_h
      */
-    public void setHeightH(String heightH) {
+    public void setHeightH(int heightH) {
         this.heightH = heightH;
     }
 
@@ -320,6 +506,96 @@ public class Photo {
      */
     public void setWidthH(String widthH) {
         this.widthH = widthH;
+    }
+
+    /**
+     * 
+     * @return
+     *     The urlO
+     */
+    public String getUrlO() {
+        return urlO;
+    }
+
+    /**
+     * 
+     * @param urlO
+     *     The url_o
+     */
+    public void setUrlO(String urlO) {
+        this.urlO = urlO;
+    }
+
+    /**
+     * 
+     * @return
+     *     The heightO
+     */
+    public String getHeightO() {
+        return heightO;
+    }
+
+    /**
+     * 
+     * @param heightO
+     *     The height_o
+     */
+    public void setHeightO(String heightO) {
+        this.heightO = heightO;
+    }
+
+    /**
+     * 
+     * @return
+     *     The widthO
+     */
+    public String getWidthO() {
+        return widthO;
+    }
+
+    /**
+     * 
+     * @param widthO
+     *     The width_o
+     */
+    public void setWidthO(String widthO) {
+        this.widthO = widthO;
+    }
+
+    /**
+     * 
+     * @return
+     *     The oWidth
+     */
+    public String getOWidth() {
+        return oWidth;
+    }
+
+    /**
+     * 
+     * @param oWidth
+     *     The o_width
+     */
+    public void setOWidth(String oWidth) {
+        this.oWidth = oWidth;
+    }
+
+    /**
+     * 
+     * @return
+     *     The oHeight
+     */
+    public String getOHeight() {
+        return oHeight;
+    }
+
+    /**
+     * 
+     * @param oHeight
+     *     The o_height
+     */
+    public void setOHeight(String oHeight) {
+        this.oHeight = oHeight;
     }
 
 }

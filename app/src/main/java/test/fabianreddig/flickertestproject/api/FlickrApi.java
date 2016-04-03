@@ -20,7 +20,7 @@ import test.fabianreddig.flickertestproject.api.models.FlickrGetRecentPhotos;
 public class FlickrApi implements IFlickerApi {
 
     public static final String FLICKR_BASE_URL = "https://api.flickr.com/services/";
-    public static final String GET_RECENT_PHOTOS_EXTRAS = "original_format,o_dims,url_q,url_n,url_h,url_o";
+    public static final String GET_RECENT_PHOTOS_EXTRAS = "original_format,o_dims,url_q,url_n,url_c,url_h,url_o";
     public static final int PER_PAGE = 20;
 
     private IFlickerRetrofit flickrRetrofit;

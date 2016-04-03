@@ -55,6 +55,8 @@ dependencies {
     compile 'com.google.dagger:dagger:' + daggerVersion
 
     //Support
+    compile 'com.android.support:recyclerview-v7:' + supportVersion
+    compile 'com.android.support:design:' + supportVersion
     compile 'com.android.support:appcompat-v7:' + supportVersion
 
     //Logging
@@ -88,4 +90,7 @@ dependencies {
     //Rx
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'io.reactivex:rxandroid:1.1.0'
+
+    //Picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

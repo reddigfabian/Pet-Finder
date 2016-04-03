@@ -1,10 +1,12 @@
 
 package test.fabianreddig.flickertestproject.api.models;
 
+import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class FlickrGetRecentPhotos { // TODO: 4/1/16 Figure out if there is a way around using this top level object
+@Generated("org.jsonschema2pojo")
+public class FlickrGetRecentPhotos {
 
     @SerializedName("photos")
     @Expose

@@ -3,7 +3,7 @@ package test.fabianreddig.flickertestproject.di.components;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import test.fabianreddig.flickertestproject.MainActivity;
+import test.fabianreddig.flickertestproject.mainactivity.MainActivity;
 import test.fabianreddig.flickertestproject.di.modules.ApiModule;
 
 /**

@@ -7,6 +7,9 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Generated;
+
+@Generated("org.jsonschema2pojo")
 public class Photos {
 
     @SerializedName("page")
@@ -14,13 +17,13 @@ public class Photos {
     private int page;
     @SerializedName("pages")
     @Expose
-    private String pages;
+    private int pages;
     @SerializedName("perpage")
     @Expose
     private int perpage;
     @SerializedName("total")
     @Expose
-    private String total;
+    private int total;
     @SerializedName("photo")
     @Expose
     private List<Photo> photo = new ArrayList<Photo>();
@@ -48,7 +51,7 @@ public class Photos {
      * @return
      *     The pages
      */
-    public String getPages() {
+    public int getPages() {
         return pages;
     }
 
@@ -57,7 +60,7 @@ public class Photos {
      * @param pages
      *     The pages
      */
-    public void setPages(String pages) {
+    public void setPages(int pages) {
         this.pages = pages;
     }
 
@@ -84,7 +87,7 @@ public class Photos {
      * @return
      *     The total
      */
-    public String getTotal() {
+    public int getTotal() {
         return total;
     }
 
@@ -93,7 +96,7 @@ public class Photos {
      * @param total
      *     The total
      */
-    public void setTotal(String total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
