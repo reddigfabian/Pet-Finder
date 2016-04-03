@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
+
+def FLICKR_CONSUMER_KEY = '"' + FlickrConsumerKeyProp + '"' ?: '"Define Flickr Consumer key"';
+def FLICKR_CONSUMER_SECRET = '"' + FlickrConsumerSecretProp + '"' ?: '"Define Flickr Consumer secret"';
+
+retrolambda {
+    jvmArgs '-noverify'
+}
+
+android {
+    dataBinding {
+        enabled = true
+    }
+    compileSdkVersion 23
+    buildToolsVersion "24.0.0 rc2"
+
+    defaultConfig {
+        applicationId "test.fabianreddig.flickertestproject"
+        minSdkVersion 18
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField 'String', 'FLICKR_CONSUMER_KEY', FLICKR_CONSUMER_KEY
+        buildConfigField 'String', 'FLICKR_CONSUMER_SECRET', FLICKR_CONSUMER_SECRET
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    def supportVersion = '23.2.1'
+    def daggerVersion = '2.2'
+    def bindingCollectionVersion = '1.0.1'
+    def rxBindingVersion = '0.3.0'
+    def retrofitVersion = '2.0.1'
+    def okHttp3Version = '3.2.0'
+
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'org.glassfish:javax.annotation:10.0-b28'
+
+    //Dagger
+    apt 'com.google.dagger:dagger-compiler:' + daggerVersion
+    compile 'com.google.dagger:dagger:' + daggerVersion
+
+    //Support
+    compile 'com.android.support:appcompat-v7:' + supportVersion
+
+    //Logging
+    compile 'com.jakewharton.timber:timber:4.1.0'
+
+    //Databinding
+    apt 'com.android.databinding:compiler:1.1'
+    compile 'me.tatarka.bindingcollectionadapter:bindingcollectionadapter:' + bindingCollectionVersion
+    compile 'me.tatarka.bindingcollectionadapter:bindingcollectionadapter-recyclerview:' + bindingCollectionVersion
+
+    //RxBinding
+    compile 'com.jakewharton.rxbinding:rxbinding:' + rxBindingVersion
+    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:' + rxBindingVersion
+    compile 'com.jakewharton.rxbinding:rxbinding-support-v4:' + rxBindingVersion
+
+    //Retrolambda
+    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.1.0'
+
+    //Retrofit
+    compile 'com.squareup.retrofit2:retrofit:' + retrofitVersion
+    compile 'com.squareup.retrofit2:converter-gson:' + retrofitVersion
+    compile 'com.squareup.retrofit2:adapter-rxjava:' + retrofitVersion
+
+    //GSON
+    compile 'com.google.code.gson:gson:2.5'
+
+    //OkHTTP
+    compile 'com.squareup.okhttp3:okhttp:' + okHttp3Version
+    compile 'com.squareup.okhttp3:okhttp-urlconnection:' + okHttp3Version
+
+    //Rx
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
+}
