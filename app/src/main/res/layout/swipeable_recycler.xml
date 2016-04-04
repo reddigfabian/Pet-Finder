@@ -19,12 +19,12 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             app:adapter='@{"test.fabianreddig.flickertestproject.common.adapters.ListAdapter"}'
             app:itemView="@{listModel.getItemView()}"
             app:items="@{listModel.getModels()}"
-            app:layoutManager="@{LayoutManagers.linear()}"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent" />
+            app:layoutManager="@{LayoutManagers.linear()}" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </layout>

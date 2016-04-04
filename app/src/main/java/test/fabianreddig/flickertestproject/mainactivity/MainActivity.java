@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import me.tatarka.bindingcollectionadapter.BR;
 import rx.Observer;
 import test.fabianreddig.flickertestproject.FlickrTestProjectApplication;
 import test.fabianreddig.flickertestproject.R;
@@ -37,14 +38,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         FlickrTestProjectApplication.applicationComponent().inject(this);
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        listModel = new ListModel<>(new CustomItemViewSelector<>());
+        listModel = new ListModel<>(new CustomItemViewSelector<>(BR.photoListItem));
         activityMainBinding.setListModel(listModel);
+        activityMainBinding.executePendingBindings();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         //Just testing out the API
         flickerApi.getRecentPhotos(1).compose(RxUtil.backgroundToMainThread()).subscribe(new Observer<FlickrGetRecentPhotos>() {
             @Override
@@ -64,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                     newModels.add(new PhotoListItemViewModel(photo));
                 }
                 listModel.addModels(newModels);
-                activityMainBinding.executePendingBindings();
             }
         });
     }
