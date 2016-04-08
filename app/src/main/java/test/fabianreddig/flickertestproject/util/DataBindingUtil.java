@@ -8,6 +8,7 @@ import com.squareup.picasso.Picasso;
 
 import test.fabianreddig.flickertestproject.R;
 import test.fabianreddig.flickertestproject.api.models.Photo;
+import test.fabianreddig.flickertestproject.common.viewmodels.PhotoListItemViewModel;
 
 /**
  * Created by WillowTree, Inc. on 4/3/16.
@@ -20,9 +21,9 @@ public class DataBindingUtil {
     }
 
     @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, Photo photo) {
+    public static void loadImage(ImageView view, PhotoListItemViewModel photoViewModel) {
         Picasso.with(view.getContext())
-                .load(photo.getUrlC())
+                .load(photoViewModel.getListURL())
                 .error(ContextCompat.getDrawable(view.getContext(), R.drawable.error))
                 .placeholder(ContextCompat.getDrawable(view.getContext(), R.drawable.place_holder))
                 .into(view);

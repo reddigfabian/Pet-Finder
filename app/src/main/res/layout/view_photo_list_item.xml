@@ -19,6 +19,7 @@
             android:id="@+id/photo_list_item_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            bind:imageUrl="@{photoListItem.getPhoto}"/>
+            bind:imageUrl="@{photoListItem}"
+            android:contentDescription="@{photoListItem.getPhoto.getTitle}" />
     </LinearLayout>
 </layout>

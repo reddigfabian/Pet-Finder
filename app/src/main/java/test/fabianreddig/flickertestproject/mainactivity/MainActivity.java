@@ -14,7 +14,7 @@ import rx.Observer;
 import test.fabianreddig.flickertestproject.FlickrTestProjectApplication;
 import test.fabianreddig.flickertestproject.R;
 import test.fabianreddig.flickertestproject.api.IFlickerApi;
-import test.fabianreddig.flickertestproject.api.models.FlickrGetRecentPhotos;
+import test.fabianreddig.flickertestproject.api.models.FlickrPhotoResponse;
 import test.fabianreddig.flickertestproject.api.models.Photo;
 import test.fabianreddig.flickertestproject.common.CustomItemViewSelector;
 import test.fabianreddig.flickertestproject.common.viewmodels.ListModel;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         //Just testing out the API
-        flickerApi.getRecentPhotos(1).compose(RxUtil.backgroundToMainThread()).subscribe(new Observer<FlickrGetRecentPhotos>() {
+        flickerApi.photosSearch(1, "puppy").compose(RxUtil.backgroundToMainThread()).subscribe(new Observer<FlickrPhotoResponse>() {
             @Override
             public void onCompleted() {
 
@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNext(FlickrGetRecentPhotos flickrGetRecentPhotos) {
+            public void onNext(FlickrPhotoResponse flickrPhotoResponse) {
                 List<PhotoListItemViewModel> newModels = new ArrayList<>();
-                for (Photo photo : flickrGetRecentPhotos.getPhotos().getPhoto()) {
+                for (Photo photo : flickrPhotoResponse.getPhotos().getPhoto()) {
                     newModels.add(new PhotoListItemViewModel(photo));
                 }
                 listModel.addModels(newModels);

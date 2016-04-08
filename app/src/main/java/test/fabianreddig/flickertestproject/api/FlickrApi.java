@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 import rx.Observable;
 import test.fabianreddig.flickertestproject.BuildConfig;
-import test.fabianreddig.flickertestproject.api.models.FlickrGetRecentPhotos;
+import test.fabianreddig.flickertestproject.api.models.FlickrPhotoResponse;
 
 /**
  * Created by WillowTree, Inc. on 4/2/16.
@@ -53,8 +53,9 @@ public class FlickrApi implements IFlickerApi {
         public static final String API_SIG = "api_sig";
         public static final String PAGE = "page";
         public static final String PER_PAGE = "per_page";
+        public static final String TEXT = "text";
 
-        public static final String[] VARIABLE_QUERY_PARAM_KEYS = new String[]{EXTRAS, API_SIG, PAGE, PER_PAGE};
+        public static final String[] VARIABLE_QUERY_PARAM_KEYS = new String[]{EXTRAS, API_SIG, PAGE, PER_PAGE, TEXT};
     }
 
     public FlickrApi(IFlickerRetrofit iFlickerRetrofit) {
@@ -62,7 +63,7 @@ public class FlickrApi implements IFlickerApi {
     }
 
     @Override
-    public Observable<FlickrGetRecentPhotos> getRecentPhotos(int page) {
+    public Observable<FlickrPhotoResponse> getRecentPhotos(int page) {
         HashMap<String, String> variableQueryParams = new HashMap<>();
         variableQueryParams.put(VariableQueryParams.EXTRAS, GET_RECENT_PHOTOS_EXTRAS);
         variableQueryParams.put(VariableQueryParams.PAGE, page+"");
@@ -80,6 +81,29 @@ public class FlickrApi implements IFlickerApi {
 //                                              generateApiSig(ConstantQueryParams.constantQueryParams(), variableQueryParams, GET_RECENT_PHOTOS_EXTRAS),
                                               page,
                                               PER_PAGE);
+    }
+
+    @Override
+    public Observable<FlickrPhotoResponse> photosSearch(int page, String searchText) {
+        HashMap<String, String> variableQueryParams = new HashMap<>();
+        variableQueryParams.put(VariableQueryParams.EXTRAS, GET_RECENT_PHOTOS_EXTRAS);
+        variableQueryParams.put(VariableQueryParams.PAGE, page+"");
+        variableQueryParams.put(VariableQueryParams.PER_PAGE, PER_PAGE+"");
+        variableQueryParams.put(VariableQueryParams.TEXT, searchText);
+        String encodedExtras = "";
+        try {
+            encodedExtras = URLEncoder.encode(GET_RECENT_PHOTOS_EXTRAS, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return flickrRetrofit.photosSearch(ConstantQueryParams.apiKey,
+                ConstantQueryParams.format,
+                ConstantQueryParams.noJsonCallback,
+                encodedExtras,
+//                                              generateApiSig(ConstantQueryParams.constantQueryParams(), variableQueryParams, GET_RECENT_PHOTOS_EXTRAS),
+                page,
+                PER_PAGE,
+                searchText);
     }
 
     private String generateApiSig(HashMap<String, String> constantQueryParams, HashMap<String, String> variableQueryParams, String extras){
