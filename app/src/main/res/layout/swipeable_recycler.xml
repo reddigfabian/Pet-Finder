@@ -7,7 +7,7 @@
 
         <variable
             name="listModel"
-            type="test.fabianreddig.flickertestproject.common.viewmodels.ListModel" />
+            type="test.fabianreddig.petfinder.common.viewmodels.ListModel" />
 
         <import type="me.tatarka.bindingcollectionadapter.LayoutManagers" />
     </data>
@@ -21,7 +21,7 @@
             android:id="@+id/recycler"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            app:adapter='@{"test.fabianreddig.flickertestproject.common.adapters.ListAdapter"}'
+            app:adapter='@{"test.fabianreddig.petfinder.common.adapters.ListAdapter"}'
             app:itemView="@{listModel.getItemView()}"
             app:items="@{listModel.getModels()}"
             app:layoutManager="@{LayoutManagers.linear()}" />
