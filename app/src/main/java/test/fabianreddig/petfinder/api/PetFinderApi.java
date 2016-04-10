@@ -45,6 +45,7 @@ public class PetFinderApi implements IPetFinderApi {
     public static class VariableQueryParams {
         //keys
         public static final String LOCATION = "location";
+        public static final String OFFSET = "offset";
         public static final String API_SIG = "sig";
     }
 
@@ -53,10 +54,13 @@ public class PetFinderApi implements IPetFinderApi {
     }
 
     @Override
-    public Observable<Petfinder> petFind(String location) {
+    public Observable<Petfinder> petFind(String location, String lastOffset) {
         Map<String,String> params = new HashMap<>();
         params.putAll(ConstantQueryParams.constantQueryParams());
         params.put(VariableQueryParams.LOCATION, location);
+        if(lastOffset!=null&&!lastOffset.equals("")) {
+            params.put(VariableQueryParams.OFFSET, lastOffset);
+        }
         return petFinderRetrofit.petFind(params);
     }
 

@@ -21,7 +21,7 @@
             android:id="@+id/recycler"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            app:adapter='@{"test.fabianreddig.petfinder.common.adapters.ListAdapter"}'
+            app:adapter='@{"test.fabianreddig.petfinder.common.adapters.ListPaginatedAdapter"}'
             app:itemView="@{listModel.getItemView()}"
             app:items="@{listModel.getModels()}"
             app:layoutManager="@{LayoutManagers.linear()}" />

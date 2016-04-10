@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    def supportVersion = '23.2.1'
+    def supportVersion = '23.3.0'
     def daggerVersion = '2.2'
     def bindingCollectionVersion = '1.0.1'
     def rxBindingVersion = '0.3.0'
@@ -49,10 +49,16 @@ dependencies {
     def okHttp3Version = '3.2.0'
     def espressoVersion = '2.2.2'
     def supportTestVersion = '0.5'
+    def oakVersion = '1.4.0'
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
+
     compile 'org.glassfish:javax.annotation:10.0-b28'
+
+    compile 'com.willowtreeapps:oak-aspectratioview:' + oakVersion
+    compile('com.willowtreeapps:oak-utils:' + oakVersion) {
+        exclude group: 'com.android.support'
+    }
 
     //Dagger
     apt 'com.google.dagger:dagger-compiler:' + daggerVersion
@@ -60,6 +66,7 @@ dependencies {
 
     //Support
     compile 'com.android.support:recyclerview-v7:' + supportVersion
+    compile 'com.android.support:cardview-v7:' + supportVersion
     compile 'com.android.support:design:' + supportVersion
     compile 'com.android.support:appcompat-v7:' + supportVersion
     compile 'com.android.support:support-annotations:' + supportVersion
@@ -97,7 +104,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp-urlconnection:' + okHttp3Version
     compile 'com.squareup.okhttp3:logging-interceptor:' + okHttp3Version
 
-    //Rx
+    //RxJava
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'io.reactivex:rxandroid:1.1.0'
 
@@ -106,6 +113,7 @@ dependencies {
 
     //TESTING
 
+    androidTestCompile 'junit:junit:4.12'
     androidTestCompile 'com.android.support:support-annotations:' + supportVersion
 
     //Espresso

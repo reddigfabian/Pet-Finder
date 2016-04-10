@@ -1,4 +1,4 @@
-package test.fabianreddig.petfinder.common.viewmodels;
+package test.fabianreddig.petfinder.mainactivity.viewmodels;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,11 +6,12 @@ import java.util.List;
 
 import test.fabianreddig.petfinder.R;
 import test.fabianreddig.petfinder.api.models.Petfinder;
+import test.fabianreddig.petfinder.common.viewmodels.BaseViewModel;
 
 /**
  * Created by WillowTree, Inc. on 4/9/16.
  */
-public class MainListItemViewModel extends BaseViewModel {
+public class MainListItemViewModel extends BaseViewModel{
     public Petfinder.Pet pet;
 
     public MainListItemViewModel(Petfinder.Pet pet){
@@ -21,17 +22,18 @@ public class MainListItemViewModel extends BaseViewModel {
     private void configureImageMap(){
         List<HashMap<String,String>> newImages = new ArrayList<>();
         List<Petfinder.Photo> photos = pet.getMedia().getPhotos();
-        for (int i = 0; i < photos.size(); i++) {
-            Petfinder.Photo currentPhoto = photos.get(i);
-            int currentID = Integer.parseInt(currentPhoto.getId());
-            HashMap<String, String> currentMap = newImages.get(currentID);
-            if(currentMap==null){
-                newImages.add(currentID, new HashMap<>());
-                currentMap = newImages.get(currentID);
+        if(photos!=null) {
+            for (int i = 0; i < (photos.size() / Petfinder.SIZES_PER_IMG); i++) {
+                newImages.add(new HashMap<>());
             }
-            currentMap.put(currentPhoto.getSize(), currentPhoto.getUrl());
+            for (int i = 0; i < photos.size(); i++) {
+                Petfinder.Photo currentPhoto = photos.get(i);
+                int currentID = Integer.parseInt(currentPhoto.getId());
+                HashMap<String, String> currentMap = newImages.get(currentID - 1);
+                currentMap.put(currentPhoto.getSize(), currentPhoto.getUrl());
+            }
+            pet.setImages(newImages);
         }
-        pet.setImages(newImages);
     }
 
     public Petfinder.Pet getPet() {
