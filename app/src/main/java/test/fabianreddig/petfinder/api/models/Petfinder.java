@@ -13,6 +13,7 @@ import java.util.List;
 @Root(name = "petfinder")
 public class Petfinder {
 
+    public static final int SIZES_PER_IMG = 5;
     public static final String SIZE_PNT = "pnt"; //width = 60
     public static final String SIZE_FPM = "fpm"; //width = 95
     public static final String SIZE_X = "x"; //width = 500
@@ -244,6 +245,8 @@ public class Petfinder {
         public List<HashMap<String, String>> getImages() {return images;}
 
         public void setImages(List<HashMap<String, String>> images) {this.images = images;}
+
+        public String getContentDescription(){return getSex() + " " + getAnimal() + " named " + getName();}
     }
 
     public static class Media {
