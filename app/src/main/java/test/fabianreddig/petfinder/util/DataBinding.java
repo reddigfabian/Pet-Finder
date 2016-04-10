@@ -26,7 +26,7 @@ public class DataBinding {
     public static void loadImage(ImageView view, List<HashMap<String, String>> images) {
         if(images.size()>0) {
             Picasso.with(view.getContext())
-                    .load(images.get(0).get(Petfinder.SIZE_X))
+                    .load(images.get(0).get(Petfinder.SIZE_PN))
                     .error(ContextCompat.getDrawable(view.getContext(), R.drawable.error))
                     .placeholder(ContextCompat.getDrawable(view.getContext(), R.drawable.place_holder))
                     .into(view);

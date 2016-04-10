@@ -10,6 +10,7 @@
             type="test.fabianreddig.petfinder.common.viewmodels.ListModel" />
 
         <import type="me.tatarka.bindingcollectionadapter.LayoutManagers" />
+        <import type="android.support.v7.widget.LinearLayoutManager" />
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout
@@ -24,7 +25,7 @@
             app:adapter='@{"test.fabianreddig.petfinder.common.adapters.ListPaginatedAdapter"}'
             app:itemView="@{listModel.getItemView()}"
             app:items="@{listModel.getModels()}"
-            app:layoutManager="@{LayoutManagers.linear()}" />
+            app:layoutManager="@{LayoutManagers.staggeredGrid(2, LinearLayoutManager.VERTICAL)}" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </layout>
