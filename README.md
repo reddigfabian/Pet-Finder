@@ -5,10 +5,11 @@ Hoping to develop this into a full-fledged application over time.
 
 ###Dependencies - Main
 * [Glassfish JavaX Annotations](http://mvnrepository.com/artifact/org.glassfish/javax.annotation/10.0-b28)
-* [WillowTree OAK kit's AspectRatioView](https://willowtreeapps.github.io/OAK/)
+* [WillowTree's OAK kit](https://willowtreeapps.github.io/OAK/)
 * [Dagger2](http://google.github.io/dagger/)
 * [RecyclerView](http://developer.android.com/reference/android/support/v7/widget/RecyclerView.html)
 * [CardView](http://developer.android.com/reference/android/support/v7/widget/CardView.html)
+* Percent Layouts
 * [Android Design Support Library](http://android-developers.blogspot.com/2015/05/android-design-support-library.html)
 * [Android Support Appcompat](http://developer.android.com/tools/support-library/features.html)
 * [Android Support Annotations](http://developer.android.com/reference/android/support/annotation/package-summary.html)
