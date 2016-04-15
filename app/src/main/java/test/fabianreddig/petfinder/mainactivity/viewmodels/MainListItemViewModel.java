@@ -1,9 +1,16 @@
 package test.fabianreddig.petfinder.mainactivity.viewmodels;
 
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
+import android.view.View;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import test.fabianreddig.petfinder.PetFinderApplication;
 import test.fabianreddig.petfinder.R;
 import test.fabianreddig.petfinder.api.models.Petfinder;
 import test.fabianreddig.petfinder.common.viewmodels.BaseViewModel;
@@ -12,11 +19,26 @@ import test.fabianreddig.petfinder.common.viewmodels.BaseViewModel;
  * Created by WillowTree, Inc. on 4/9/16.
  */
 public class MainListItemViewModel extends BaseViewModel{
-    public Petfinder.Pet pet;
+    public static final String ON_PET_CLICKED = "on_pet_clicked";
+    public static final String EXTRA_POSITION = "extra_position";
 
-    public MainListItemViewModel(Petfinder.Pet pet){
+    private Petfinder.Pet pet;
+    private int position;
+
+    @Inject
+    LocalBroadcastManager broadcastManager;
+
+    public MainListItemViewModel(Petfinder.Pet pet, int position){
+        PetFinderApplication.applicationComponent().inject(this);
         this.pet = pet;
+        this.position = position;
         configureImageMap();
+    }
+
+    public void onPetClicked(View v){
+        Intent petClickIntent = new Intent(ON_PET_CLICKED);
+        petClickIntent.putExtra(EXTRA_POSITION, position);
+        broadcastManager.sendBroadcast(petClickIntent);
     }
 
     private void configureImageMap(){
@@ -42,6 +64,18 @@ public class MainListItemViewModel extends BaseViewModel{
 
     public void setPet(Petfinder.Pet pet) {
         this.pet = pet;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public String getPositionStr(){
+        return position+"";
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 
     @Override

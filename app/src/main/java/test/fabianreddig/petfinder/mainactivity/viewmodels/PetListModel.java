@@ -43,10 +43,10 @@ public class PetListModel extends ListModel<MainListItemViewModel> {
                     @Override
                     public void onNext(Petfinder petfinder) {
                         if(petfinder.getPets()==null){
-                            throw new IllegalStateException("Unable to find any pets."); //Todo handle this case better
+                            throw new IllegalStateException("Unable to find any pets."); //Todo handle this case better; add empty state
                         }else {
-                            for (Petfinder.Pet pet : petfinder.getPets()) {
-                                addModel(new MainListItemViewModel(pet));
+                            for (int i = 0; i < petfinder.getPets().size(); i++) {
+                                addModel(new MainListItemViewModel(petfinder.getPets().get(i), i+offset));
                             }
                         }
                     }

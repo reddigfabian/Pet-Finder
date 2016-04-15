@@ -27,8 +27,8 @@ public class DataBinding {
         if(images.size()>0) {
             Picasso.with(view.getContext())
                     .load(images.get(0).get(Petfinder.SIZE_PN))
-                    .error(ContextCompat.getDrawable(view.getContext(), R.drawable.error))
-                    .placeholder(ContextCompat.getDrawable(view.getContext(), R.drawable.place_holder))
+                    .error(ContextCompat.getDrawable(view.getContext(), R.drawable.error)) //TODO Better error img
+                    .placeholder(ContextCompat.getDrawable(view.getContext(), R.drawable.place_holder)) //TODO Better placeholder
                     .into(view);
         }else{
             view.setImageResource(R.drawable.error); // TODO: 4/9/16 Set this to a "NO IMAGE AVAILABLE" placeholder

@@ -8,4 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="PetNameTextView" >
+        <item name="android:textColor">@color/colorPrimary_text</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="PetBreedTextView" >
+        <item name="android:textColor">@color/colorPrimary_text</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingTop">@dimen/default_padding_quarter</item>
+    </style>
+
+    <style name="PetAttrTextView" >
+        <item name="android:textColor">@color/colorSecondary_text</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingEnd">@dimen/default_padding_half</item>
+        <item name="android:paddingTop">@dimen/default_padding_quarter</item>
+    </style>
+
 </resources>
