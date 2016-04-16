@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Pet Finder</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="small">Small</string>
+    <string name="medium">Medium</string>
+    <string name="large">Large</string>
+    <string name="bullet_unicode">•</string>
 </resources>

@@ -17,7 +17,7 @@ public class ListModel<T> extends BaseListModel<T> {
         itemView = selector;
     }
 
-    public ItemViewSelector getItemView() {
+    public ItemViewSelector<T> getItemView() {
         return itemView;
     }
 

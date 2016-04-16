@@ -11,15 +11,16 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardUseCompatPadding="true">
+        android:layout_margin="@dimen/card_margin"
+        app:cardUseCompatPadding="true"
+        android:onClick="@{viewModel.onPetClicked}">
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding">
+            android:orientation="vertical">
             <ImageView
                 android:id="@+id/main_list_item_image"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
@@ -27,12 +28,23 @@
                 tools:src="@drawable/place_holder"
                 android:contentDescription="@{viewModel.getPet.getContentDescription}"/>
 
-            <TextView
-                android:id="@+id/main_list_item_name_textview"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.getPet.getName}"
-                tools:text="Izzy"/>
+                android:orientation="vertical"
+                android:id="@+id/main_list_item_pet_details_container"
+                android:background="@drawable/main_list_item_info_gradient"
+                android:paddingTop="@dimen/default_padding_half"
+                android:paddingBottom="@dimen/default_padding"
+                android:paddingStart="@dimen/default_padding"
+                android:paddingEnd="@dimen/default_padding">
+                <TextView
+                    style="@style/PetNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.getPet.getName}"
+                    tools:text="Dexter" />
+            </LinearLayout>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

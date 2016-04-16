@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import test.fabianreddig.petfinder.PetFinderApplication;
+import test.fabianreddig.petfinder.R;
+
 @Root(name = "petfinder")
 public class Petfinder {
 
@@ -247,6 +250,39 @@ public class Petfinder {
         public void setImages(List<HashMap<String, String>> images) {this.images = images;}
 
         public String getContentDescription(){return getSex() + " " + getAnimal() + " named " + getName();}
+
+        public String getSexString(){
+            String toReturn = "";
+            if(sex.equals("M")){
+                toReturn = PetFinderApplication.getApp().getString(R.string.male);
+            }else if(sex.equals("F")){
+                toReturn = PetFinderApplication.getApp().getString(R.string.female);
+            }
+            return toReturn;
+        }
+
+        public String getSizeString(){
+            String toReturn = "";
+            if(size.equals("S")){
+                toReturn = PetFinderApplication.getApp().getString(R.string.small);
+            }else if(size.equals("M")){
+                toReturn = PetFinderApplication.getApp().getString(R.string.medium);
+            }else if(size.equals("L")){
+                toReturn = PetFinderApplication.getApp().getString(R.string.large);
+            }
+            return toReturn;
+        }
+
+        public String getBreedString(){
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < breeds.size(); i++) {
+                stringBuilder.append(breeds.get(i).getBreed());
+                if((i+1)!=breeds.size()){
+                    stringBuilder.append(" & ");
+                }
+            }
+            return stringBuilder.toString();
+        }
     }
 
     public static class Media {
@@ -355,7 +391,7 @@ public class Petfinder {
 
     public static class Breeds {
 
-        @Element(name="breed", required = false)
+        @Text
         String breed;
 
 
