@@ -4,7 +4,7 @@
     <data>
         <variable
             name="listModel"
-            type="test.fabianreddig.petfinder.mainactivity.viewmodels.PetListModel" />
+            type="test.fabianreddig.petfinder.mainactivity.viewmodels.PetListViewModel" />
     </data>
     <FrameLayout
         android:layout_width="match_parent"

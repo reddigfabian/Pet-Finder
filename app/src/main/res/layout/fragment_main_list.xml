@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="listModel"
-            type="test.fabianreddig.petfinder.mainactivity.viewmodels.PetListModel" />
+            name="petListViewModel"
+            type="test.fabianreddig.petfinder.mainactivity.viewmodels.PetListViewModel" />
     </data>
     <FrameLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         <include
             android:id="@+id/swipeable_recycler_main"
             layout="@layout/swipeable_recycler"
-            app:listModel="@{listModel}"/>
+            app:listModel="@{petListViewModel.getListModel}"/>
 
     </FrameLayout>
 </layout>

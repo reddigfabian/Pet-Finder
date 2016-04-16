@@ -11,13 +11,11 @@ import android.support.v4.content.LocalBroadcastManager;
 
 import javax.inject.Inject;
 
-import me.tatarka.bindingcollectionadapter.BR;
 import test.fabianreddig.petfinder.PetFinderApplication;
 import test.fabianreddig.petfinder.R;
-import test.fabianreddig.petfinder.common.CustomItemViewSelector;
 import test.fabianreddig.petfinder.common.activities.BaseActivity;
 import test.fabianreddig.petfinder.mainactivity.viewmodels.MainListItemViewModel;
-import test.fabianreddig.petfinder.mainactivity.viewmodels.PetListModel;
+import test.fabianreddig.petfinder.mainactivity.viewmodels.PetListViewModel;
 
 public class MainActivity extends BaseActivity{
     private static final String TAG = MainActivity.class.getName();
@@ -25,7 +23,7 @@ public class MainActivity extends BaseActivity{
     @Inject
     LocalBroadcastManager broadcastManager;
 
-    private PetListModel petListModel;
+    private PetListViewModel petListViewModel;
 
     BroadcastReceiver petClickedReceiver = new BroadcastReceiver() {
         @Override
@@ -39,7 +37,7 @@ public class MainActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         PetFinderApplication.applicationComponent().inject(this);
-        petListModel = new PetListModel(new CustomItemViewSelector<>(BR.viewModel));
+        petListViewModel = new PetListViewModel();
         switchFragment(MainListFragment.newInstance());
     }
 
@@ -60,7 +58,7 @@ public class MainActivity extends BaseActivity{
         ft.replace(R.id.main_fragment_holder, frag).addToBackStack("bllop").commit();// TODO: 4/15/16 Proper fragment tagging
     }
 
-    public PetListModel getPetListModel() {
-        return petListModel;
+    public PetListViewModel getPetListViewModel() {
+        return petListViewModel;
     }
 }

@@ -31,7 +31,7 @@ public class PetDetailFragment extends BaseFragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainListItemViewModel = ((MainActivity) getAppCompatActivity()).getPetListModel().getModels().get(getArguments().getInt(MainListItemViewModel.EXTRA_POSITION));
+        mainListItemViewModel = ((MainActivity) getAppCompatActivity()).getPetListViewModel().getListModel().getModels().get(getArguments().getInt(MainListItemViewModel.EXTRA_POSITION));
     }
 
     @Nullable

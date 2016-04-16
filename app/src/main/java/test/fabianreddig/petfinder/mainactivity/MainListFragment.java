@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,7 @@ import test.fabianreddig.petfinder.api.PetFinderApi;
 import test.fabianreddig.petfinder.common.adapters.ListPaginatedAdapter;
 import test.fabianreddig.petfinder.common.fragments.PaginatedFragment;
 import test.fabianreddig.petfinder.databinding.FragmentMainListBinding;
-import test.fabianreddig.petfinder.mainactivity.viewmodels.MainListItemViewModel;
-import test.fabianreddig.petfinder.mainactivity.viewmodels.PetListModel;
+import test.fabianreddig.petfinder.mainactivity.viewmodels.PetListViewModel;
 
 /**
  * Created by WillowTree, Inc. on 4/10/16.
@@ -24,6 +22,9 @@ public class MainListFragment extends PaginatedFragment implements SwipeRefreshL
     private static final String TAG = MainListFragment.class.getName();
     private static final String PAGINATE_ACTION = TAG + "_PAGINATE";
 
+    private boolean isFirstRun;
+    private int rememberPosition;
+
     FragmentMainListBinding fragmentMainListBinding;
     String currentLocation;
 
@@ -31,6 +32,12 @@ public class MainListFragment extends PaginatedFragment implements SwipeRefreshL
 
     public static MainListFragment newInstance(){
         return new MainListFragment();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        isFirstRun = true;
     }
 
     @Nullable
@@ -45,32 +52,19 @@ public class MainListFragment extends PaginatedFragment implements SwipeRefreshL
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerSetup();
-        Bundle args = getArguments();
-        if(args != null && getArguments().getInt(MainListItemViewModel.EXTRA_POSITION,0)>0){
-            int currentPosition = savedInstanceState.getInt(MainListItemViewModel.EXTRA_POSITION);
-            while(currentPosition>(page*Integer.parseInt(PetFinderApi.ConstantQueryParams.COUNT_VALUE))){
-                paginate(++page);// Still working on this
-            }
-            fragmentMainListBinding.swipeableRecyclerMain.recycler.scrollToPosition(currentPosition);
-        }else{
-            refresh(false);
-        }
     }
 
     @Override
-    public void onDestroyView() {
-        savePosition();
+    public void onResume() {
+        super.onResume();
+        if(isFirstRun){
+            isFirstRun = false;
+            refresh(false);
+        }else if(getParentPetListViewModel().isWasPaged()){
+            fragmentMainListBinding.swipeableRecyclerMain.recycler.scrollToPosition(getParentPetListViewModel().getCurrentPosition());
+            getParentPetListViewModel().setWasPaged(false);
+        }
     }
-
-    private void savePosition(){
-        Bundle args = new Bundle();
-        int [] currentPosition = new int[2];
-        ((StaggeredGridLayoutManager) fragmentMainListBinding.swipeableRecyclerMain.recycler.getLayoutManager()).findFirstCompletelyVisibleItemPositions(currentPosition);
-        args.putInt(MainListItemViewModel.EXTRA_POSITION, currentPosition[0]);
-        this.setArguments(args);
-    }
-
-
 
     @Override
     public void update() {
@@ -81,7 +75,7 @@ public class MainListFragment extends PaginatedFragment implements SwipeRefreshL
 
 
     private void refresh(boolean swipeRefresh){
-        getParentPetListModel().clearModels();
+        getParentPetListViewModel().clearList();
         if(!swipeRefresh){
             if(!isRefreshing){
                 isRefreshing = true;
@@ -96,7 +90,7 @@ public class MainListFragment extends PaginatedFragment implements SwipeRefreshL
 
     private void databindingSetup(ViewGroup container){
         fragmentMainListBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), getLayoutId(), container, false);
-        fragmentMainListBinding.setListModel(getParentPetListModel());
+        fragmentMainListBinding.setPetListViewModel(getParentPetListViewModel());
         fragmentMainListBinding.executePendingBindings();
     }
 
@@ -107,14 +101,14 @@ public class MainListFragment extends PaginatedFragment implements SwipeRefreshL
 
     private void petFind(int page){
         int offset = page*Integer.parseInt(PetFinderApi.ConstantQueryParams.COUNT_VALUE);
-        addSubscription(getParentPetListModel().petFind(currentLocation, offset).subscribe(aBoolean -> {
+        addSubscription(getParentPetListViewModel().petFind(currentLocation, offset).subscribe(aBoolean -> {
             isRefreshing = false;
             fragmentMainListBinding.swipeableRecyclerMain.refresh.setRefreshing(false);
         }));
     }
 
-    private PetListModel getParentPetListModel() {
-        return ((MainActivity) getAppCompatActivity()).getPetListModel();
+    private PetListViewModel getParentPetListViewModel(){
+        return ((MainActivity) getAppCompatActivity()).getPetListViewModel();
     }
 
     @Override
