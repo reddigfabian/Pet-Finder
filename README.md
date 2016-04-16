@@ -1,6 +1,3 @@
-
-<img src="http://i.imgur.com/R1raY.gif" alt="alt text" width="800" height="450">
-
 # Pet Finder
 A playground to test Android libraries and design patterns using the Pet Finder API.
 
